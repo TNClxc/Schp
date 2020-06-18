@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.star.mapper.UserMapper">
+
+    <select id="login" resultType="schp_User">
+        select * from schp_user where userName =#{userName} and passWord = #{passWord}
+    </select>
+    <insert id="">
+        INSERT INTO schp_user (realName,userName,passWord,sex,usePhone) VALUES(#{realName},#{userName},#{passWord},#{sex},#{usePhone})
+    </insert>
+</mapper>
