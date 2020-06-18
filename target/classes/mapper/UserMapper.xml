@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.star.mapper.UserMapper">
+
+    <select id="login" resultType="User">
+        select * from schp_user where userName =#{userName} and passWord = #{passWord}
+    </select>
+    <insert id="Register" parameterType="com.star.pojo.User">
+        INSERT INTO schp_user (realName,userName,passWord,sex,usePhone) VALUES(#{user.realName},#{user.userName},#{user.passWord},#{user.sex},#{user.usePhone})
+    </insert>
+    <select id="repeat" resultType="int">
+        SELECT COUNT(1) FROM schp_user WHERE userName=#{userName}
+    </select>
+</mapper>

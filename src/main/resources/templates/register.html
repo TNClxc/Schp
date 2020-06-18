@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CSS3动态背景登录框代码</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/sty.css">
+	<style>
+		option{
+		color: #1f1f1f;
+	}
+	</style>
+</head>
+<body>
+
+
+<div class="wrapper">
+
+	<div class="container">
+		<h1>Welcome</h1>
+		<form class="form" th:action="doregister" method="post">
+			<input class="formInput" type="text" placeholder="姓名" th:name ="realName">
+			<input class="formInput" type="text" placeholder="用户名" th:name ="UserName" value=""  id ="username">
+			<input class="formInput" type="password" placeholder="密码" th:name ="PassWord">
+			<select th:name="sex" class="formInput" style="text-align:center;text-align-last:center;padding-left:6px;">
+				<option  value="男" >男</option>
+				<option value="女" >女</option>
+			</select>
+			<input id="phone" class="formInput" type="text" placeholder="电话号码" th:name ="usePhone">
+			<button type="submit" id="login-button" >登录</button>
+		</form>
+	</div>
+
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+	$('#login-button').click(function(event){
+		event.preventDefault();
+		$('form').fadeOut(500);
+		$('.wrapper').addClass('form-success');
+		setTimeout(function () {
+			$(".form").submit();
+		},1000);
+
+	});
+	$("#phone").blur(function () {
+		var ph = document.getElementById('phone').value;
+		if(!(/^1[3456789]\d{9}$/.test(ph))){
+			alert("手机号码有误，请重填");
+			return false;
+		}
+	});
+
+	$("#username").blur(function () {
+		var username = $("#username").val();
+		var bution=document.getElementById("login-button");
+		$.ajax({
+			url:"/repeat?userName="+username,
+			type :"get",
+			datatype: "text",
+			success:function (data) {
+				if (data=="false") {
+					$("#username").val("");
+
+					$("#username").attr("placeholder","不可用");
+					bution.disabled=true;
+				}else{
+					bution.disabled=false;
+				}
+			},
+			error :function () {
+				alert("ajax error");
+			}
+		});
+	});
+
+</script>
+
+</body>
+</html>
