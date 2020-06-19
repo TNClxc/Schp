@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class indexController {
@@ -24,12 +25,13 @@ public class indexController {
     }
 
     @RequestMapping("/dologin")
-    public String login(HttpServletRequest request) {
+    public String login(HttpServletRequest request, HttpSession session) {
         String userName =request.getParameter("username");
         String passWord = request.getParameter("password");
         User loginuser = userService.login(userName,passWord);
         if(loginuser!= null){
             System.out.println("成功");
+            session.setAttribute("user",loginuser);
             return "index";
         }else{
             System.out.println("失败");
@@ -65,5 +67,21 @@ public class indexController {
 
         String result = (userService.repeat(userName)>0)?"false":"true" ;
             return result;
+    }
+
+    //头部公用方法
+    @RequestMapping("/header")
+    public String header(){
+        return "public_header";
+    }
+    //公用左边方法
+    @RequestMapping("/leftAll")
+    public String leftAll(){
+        return "public_left";
+    }
+    //iframe跳转文章发布界面
+    @RequestMapping("/article")
+    public String article(){
+        return "wenzhang_xinwen";
     }
 }
