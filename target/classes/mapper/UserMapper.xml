@@ -13,4 +13,10 @@
     <select id="repeat" resultType="int">
         SELECT COUNT(1) FROM schp_user WHERE userName=#{userName}
     </select>
+    <update id="upPwd" parameterType="com.star.pojo.User">
+        UPDATE `schpdb`.`schp_user` SET `passWord` = #{passWord} WHERE `id` = #{id}
+    </update>
+    <select id="checkPwd" resultType="com.star.pojo.User">
+        SELECT * FROM `schp_user` WHERE `passWord`=#{passWord}
+    </select>
 </mapper>

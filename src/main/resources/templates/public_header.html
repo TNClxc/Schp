@@ -26,8 +26,8 @@
 			<a href="javascript:;" class="superUser" th:text="${session.user.realName}" ><i  class="ico-tri"></i></a>
 			<div class="slidedownBox">
 				<ul>
-					<li><a href="change_psw.html" target="Mainindex">修改密码</a></li>
-					<li><a href="loginb.html" target="_parent">退出</a></li>
+					<li><a th:href="@{/upPwd}" target="Mainindex">修改密码</a></li>
+					<li><a th:href="@{/exit}" target="_parent">退出</a></li>
 				</ul>
 			</div>
 		</div>

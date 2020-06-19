@@ -8,7 +8,7 @@ public interface UserMapper {
      * 用户登陆
      * @param UserName
      * @param PassWord
-     * @return
+     * @return lai
      */
     public User login(@Param("userName")String UserName, @Param("passWord")String PassWord);
 
@@ -27,6 +27,23 @@ public interface UserMapper {
      * @return hao
      * */
     public int repeat (@Param("userName")String userName);
+
+    /**
+     * 修改密码
+     * @param passWord
+     * @param id
+     * @return hao
+     */
+    public int upPwd(@Param("passWord")String passWord,@Param("id")int id);
+
+    /**
+     * 修改密码时查询密码是否正确
+     * @param
+     * @param
+     * @return hao
+     * */
+    public User checkPwd(@Param("passWord")String passWord);
+
 
 
 

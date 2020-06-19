@@ -19,11 +19,13 @@ public class indexController {
     @Autowired
     private UserService userService;
 
+    //初始页面
     @RequestMapping("/login")
     public String index() {
         return "login";
     }
 
+    //登录验证
     @RequestMapping("/dologin")
     public String login(HttpServletRequest request, HttpSession session) {
         String userName =request.getParameter("username");
@@ -31,6 +33,7 @@ public class indexController {
         User loginuser = userService.login(userName,passWord);
         if(loginuser!= null){
             System.out.println("成功");
+            //session获取当前用户的信息
             session.setAttribute("user",loginuser);
             return "index";
         }else{
@@ -61,12 +64,48 @@ public class indexController {
         return "register";
     }
 
+    //验证用户名是否重复
     @RequestMapping("/repeat")
     @ResponseBody
     public String repeat(@RequestParam("userName")String userName){
-
         String result = (userService.repeat(userName)>0)?"false":"true" ;
             return result;
+    }
+
+    //跳转修改密码方法
+    @RequestMapping("/upPwd")
+    public String upPwd(){
+        return "change_psw";
+    }
+
+    //修改密码
+    @RequestMapping("/change_psw")
+    public String change_psw(@RequestParam("passWord")String passWord,HttpServletRequest request){
+        int id=((User)request.getSession().getAttribute("user")).getId();
+        int flag=userService.upPwd(passWord,id);
+        if (flag>0){
+            System.out.println("修改后密码"+passWord);
+            return "redirect:/login";
+        }else{
+            request.setAttribute("error","修改错误");
+            return "change_psw";
+        }
+    }
+
+    //修改时查询原始密码是否正确
+    @RequestMapping("/checkPwds")
+    @ResponseBody
+    public String checkPwds(@RequestParam("passWord")String passWord){
+        return (userService.checkPwd(passWord)!=null)?"true":"false";
+    }
+
+    //退出方法
+    @RequestMapping("/exit")
+    public String exit(HttpSession session,HttpServletRequest request){
+        //清除session
+        session.removeAttribute("user");
+        //重定向到登录页面
+        return "redirect:/login";
     }
 
     //头部公用方法
