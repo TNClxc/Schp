@@ -27,5 +27,15 @@ public class UserServiceImpl implements UserService {
         return userMapper.repeat(userName);
     }
 
+    @Override
+    public int upPwd(String passWord, int id) {
+        return userMapper.upPwd(passWord,id);
+    }
+
+    @Override
+    public User checkPwd(String passWord) {
+        return userMapper.checkPwd(passWord);
+    }
+
 
 }

@@ -1,57 +1,96 @@
 <!DOCTYPE html>
-<html class=" js csstransforms3d"><head>
-	<meta charset="utf-8">
-	<meta name="renderer" content="webkit">
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>修改密码</title>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/page.css">
-	<!--[if lte IE 8]>
-	<link href="css/ie8.css" rel="stylesheet" type="text/css"/>
-	<![endif]-->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="js/modernizr.js"></script>
-	<!--[if IE]>
-	<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
-	<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="renderer" content="webkit">
+	<title></title>
+	<link rel="stylesheet" th:href="@{css/pintuer.css}">
+	<link rel="stylesheet" th:href="@{css/admin.css}">
+	<script th:src="@{js/jquery.js}"></script>
+	<script th:src="@{js/pintuer.js}"></script>
 </head>
-
-<body style="background: #f6f5fa;">
-	<!--content S-->
-	<div class="super-content">
-		<div class="superCtab">
-			<div class="publishArt">
-				<h4>修改密码</h4>
-				<div class="pubMain">
-					<h5 class="pubtitle">旧密码</h5>
-					<div class="pub-txt-bar">
-						<input type="password" class="shuruTxt shuruTxt2"><b class="error"></b>
-						<div class="errorBox">您所输入的旧密码不正确，请重新输入！</div>
-					</div>
-					<h5 class="pubtitle">新密码<span>（数字、字母、符号组合，最少8个字符）</span></h5>
-					<div class="pub-txt-bar">
-						<input type="password" class="shuruTxt shuruTxt2"><b class="error"></b>
-						<div class="errorBox">您所输入的旧密码不正确，请重新输入！</div>
-					</div>
-					<h5 class="pubtitle">确认密码</h5>
-					<div class="pub-txt-bar">
-						<input type="password" class="shuruTxt shuruTxt2"><b class="error"></b>
-						<div class="errorBox">您所输入的旧密码不正确，请重新输入！</div>
-					</div>
-					<div class="pub-btn">
-						<input type="button" id="" value="确定" class="saveBtn">
-						<input type="button" id="" value="重置" class="resetBtn">
-					</div>
+<body>
+<div class="panel admin-panel">
+	<div class="panel-head"><strong><span class="icon-key"></span> 修改密码</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x" th:action="@{/change_psw}">
+			<div class="form-group">
+				<div class="label">
+					<label for="sitename">管理员帐号：</label>
+				</div>
+				<div class="field">
+					<label style="line-height:33px;" th:text="${session.user.userName}">
+					</label>
 				</div>
 			</div>
-		
-		</div>
-		<!--main-->
-		
+			<div class="form-group">
+				<div class="label">
+					<label for="sitename">原始密码：</label>
+				</div>
+				<div class="field">
+					<input type="password"  class="input w50" id="mpass" name="mpass" size="50" placeholder="请输入原始密码" data-validate="required:请输入原始密码" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="label">
+					<label for="sitename">新密码：</label>
+				</div>
+				<div class="field">
+					<input type="password" class="input w50" name="passWord" size="50" placeholder="请输入新密码" data-validate="required:请输入新密码,length#>=5:新密码不能小于5位" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="label">
+					<label for="sitename">确认新密码：</label>
+				</div>
+				<div class="field">
+					<input type="password" class="input w50" name="renewpass" size="50" placeholder="请再次输入新密码" data-validate="required:请再次输入新密码,repeat#passWord:两次输入的密码不一致" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					<button class="button bg-main icon-check-square-o" type="submit" id="submi"> 提交</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button bg-sub icon-rocket" type="reset">&nbsp;&nbsp;&nbsp;重置 &nbsp;&nbsp;</button>
+				</div>
+			</div>
+		</form>
 	</div>
-	<!--content E-->
-	
+</div>
+<script type="text/javascript" th:src="@{js/jquery-1.8.0.min.js}"></script>
+<script>
+	$(function () {
+		$("#mpass").blur(function () {
+			var  ount=document.getElementById("mpass").value;
+			var  sub=document.getElementById("submi");
+			$.ajax({
+				url:"/checkPwds?passWord="+ount,
+				type:"post",
+				datatype:"text",
+				success: function (data) {
+					if (data=="false") {
+						alert("原始密码错误")
+
+						sub.disabled=true;//按钮禁用,true为禁用，false反之
+
+					}else{
+
+						sub.disabled=false;
+					}
+				},
+				error : function() {
+					alert("ajax error");
+				}
 
 
+			})
+		})
+	})
+
+</script>
 </body></html>
