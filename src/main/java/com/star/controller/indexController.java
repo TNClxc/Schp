@@ -30,7 +30,6 @@ public class indexController {
         String passWord = request.getParameter("password");
         User loginuser = userService.login(userName,passWord);
         if(loginuser!= null){
-            System.out.println("成功");
             session.setAttribute("user",loginuser);
             return "index";
         }else{
@@ -78,10 +77,5 @@ public class indexController {
     @RequestMapping("/leftAll")
     public String leftAll(){
         return "public_left";
-    }
-    //iframe跳转文章发布界面
-    @RequestMapping("/article")
-    public String article(){
-        return "wenzhang_xinwen";
     }
 }

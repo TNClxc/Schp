@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Resource
+    @Autowired
     private UserMapper userMapper;
     @Override
     public User login(String UserName, String PassWord) {
