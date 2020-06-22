@@ -19,4 +19,7 @@
     <select id="checkPwd" resultType="com.star.pojo.User">
         SELECT * FROM `schp_user` WHERE `passWord`=#{passWord}
     </select>
+    <select id="userList" resultType="com.star.pojo.User">
+        SELECT * FROM `schp_user` LIMIT #{pageStart},#{pagesize}
+    </select>
 </mapper>
