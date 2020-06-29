@@ -1,7 +1,10 @@
 package com.star.controller;
 
 import com.star.pojo.User;
+import com.star.service.InfoService;
 import com.star.service.PersonService;
+import com.star.service.UserService;
+import com.star.utils.Pageutil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-public class PersonController {
+public class UserController {
 
     @Resource
     private PersonService personService;
-
+@Resource
+private UserService userService;
     //人员详细信息展示
     @RequestMapping("/getPerson")
     public String getPerson(@RequestParam("id")int id,HttpServletRequest request){
@@ -64,4 +68,33 @@ public class PersonController {
         request.setAttribute("list",list);
         return "zixun_up";
     }
+
+
+    //人员查询
+    @RequestMapping("/UserList")
+    public String UserList(HttpServletRequest request, @RequestParam(value = "currentPage",required = false)String currentPage){
+        if (currentPage == null || currentPage == "") {
+            currentPage = "1";
+        }
+        Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), 0);
+        List<User> list = userService.userList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
+        pageutil.setTotalCount(list.size());
+        request.setAttribute("userList",list );
+        request.setAttribute("pageUtil", pageutil);
+        return "zixun_Team";
+
+
+    }
+    //人员模糊查询
+    @RequestMapping("/getUserList")
+    public String getUserList(@RequestParam("realName")String realName,HttpServletRequest request){
+        Pageutil pageutil=null;
+        List<User> infoList=userService.getUserList(realName);
+        pageutil = new Pageutil(1, infoList.size());
+        request.setAttribute("infoList",infoList);
+        request.setAttribute("pageUtil", pageutil);
+        return "zixun_Team";
+    }
+
+
 }

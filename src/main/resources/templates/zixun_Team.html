@@ -38,12 +38,12 @@
 
 
 
-								<tr th:each="info:${infoList}">
-									<td class="t_1" th:text="${info.realName}"></td>
-									<td class="t_2_1"><a th:href="@{/getPerson(id=${info.id})}" class="team-a" th:text="${info.userName}"></a></td>
-									<td class="t_3" th:text="${info.usePhone}"></td>
-									<td class="t_4" th:text="${info.Role.roleName}" ></td>
-									<td class="alcenter"><a id="del" th:href="@{/delPersons(id=${info.id})}" class="delete export-a">删除</a></td>
+								<tr th:each="user:${userList}">
+									<td class="t_1" th:text="${user.realName}"></td>
+									<td class="t_2_1"><a th:href="@{/getPerson(id=${user.id})}" class="team-a" th:text="${user.userName}"></a></td>
+									<td class="t_3" th:text="${user.usePhone}"></td>
+									<td class="t_4" th:text="${user.Role.roleName}" ></td>
+									<td class="alcenter"><a id="del" th:href="@{/delPersons(id=${user.id})}" class="delete export-a">删除</a></td>
 								</tr>
 
 							</table>

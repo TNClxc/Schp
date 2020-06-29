@@ -91,32 +91,6 @@ public class indexController {
 
 
 
-    //人员查询
-    @RequestMapping("/UserList")
-    public String UserList(HttpServletRequest request, @RequestParam(value = "currentPage",required = false)String currentPage){
-        Pageutil pageutil=null;
-        if(currentPage==null){
-            pageutil = new Pageutil(1, userService.getCount());
-            request.setAttribute("infoList", userService.userList(pageutil.getCurrentPage(), Pageutil.PAGE_SIZE));
-            request.setAttribute("pageUtil", pageutil);
-            return "zixun_Team";
-        }else{
-            pageutil = new Pageutil(Integer.parseInt(currentPage), userService.getCount());
-            request.setAttribute("infoList", userService.userList(pageutil.getCurrentPage(), Pageutil.PAGE_SIZE));
-            request.setAttribute("pageUtil", pageutil);
-            return "zixun_Team";
-        }
-    }
-    //人员模糊查询
-    @RequestMapping("/getUserList")
-    public String getUserList(@RequestParam("realName")String realName,HttpServletRequest request){
-        Pageutil pageutil=null;
-        List<User> infoList=userService.getUserList(realName);
-        pageutil = new Pageutil(1, infoList.size());
-        request.setAttribute("infoList",infoList);
-        request.setAttribute("pageUtil", pageutil);
-        return "zixun_Team";
-    }
 
     //头部公用方法
     @RequestMapping("/header")
