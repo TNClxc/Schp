@@ -1,7 +1,11 @@
 package com.star.mapper;
 
 import com.star.pojo.Info;
+
 import com.star.pojo.User;
+
+import com.star.pojo.InfoType;
+
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -43,5 +47,25 @@ public interface InfoMapper {
      * @return hao
      */
     public int upPerson(@Param("upUser")User upUser);
+/*
+     * 删除发布职位信息
+     * @param infoId
+     * @return lai
+     */
+    public int delInfo(@Param("id")int infoId);
+
+
+    /**
+     * 新增发布信息
+     * @param info
+     * @return lai
+     */
+    public int infoAdd(@Param("info")Info info);
+
+    /**
+     * 查询文章分类
+     * @return lai
+     */
+    public List<InfoType> getInfoTypeList();
 
 }

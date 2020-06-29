@@ -35,8 +35,7 @@ public class indexController {
             session.setAttribute("user",loginuser);
             return "index";
         }else{
-            System.out.println("失败");
-            request.setAttribute("error","密码输入错误,请检查后重试 ");
+            request.setAttribute("error","用户名或密码输入错误,请检查后重试 ");
             return "login";
         }
     }

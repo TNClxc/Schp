@@ -3,24 +3,38 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.star.mapper.InfoMapper">
+    <!-- 分页查询全部信息 -->
     <select id="getInfoList" resultType="Info">
-        select * from schp_info limit #{currentPage},#{pageSize}
+        select * from schp_info  order by id desc limit #{currentPage},#{pageSize}
     </select>
+
+    <!-- 统计职位总记录数 -->
     <select id="getTotalCount" resultType="int">
-    select count(1) from schp_info
+
+        select count(1) from schp_info
+
     </select>
 
-    <select id="getPersonage" resultType="com.star.pojo.User">
-        SELECT * FROM schp_user WHERE id=#{id}
-    </select>
+    <!-- 删除职位信息 -->
+    <delete id="delInfo">
+        delete
+        from schp_info where
+        id=#{id}
 
-    <delete id="delPerson" parameterType="com.star.pojo.User">
-        DELETE  FROM `schp_user` WHERE id=#{id}
     </delete>
 
-    <update id="upPerson" parameterType="com.star.pojo.User">
-        UPDATE `schpdb`.`schp_user` SET `realName` = #{upUser.realName},`sex` = #{upUser.sex},`usePhone` = #{upUser.usePhone},`userRoleId` = #{upUser.userRoleId} WHERE `id` = #{upUser.id}
-    </update>
+    <!--查询文章分类  -->
+    <select id="getInfoTypeList" resultType="InfoType">
+        select * from schp_infotype
+    </select>
+
+    <!--发布职位信息-->
+    <insert id="infoAdd" parameterType="Info">
+        INSERT INTO `schpdb`.`schp_info` ( `infoTitle`, `infoContent`, `infoType`, `infoDate`, `userId`)
+        VALUES (#{info.infoTitle}, #{info.infoContent}, #{info.infoType}, NOW(), #{info.userId});
+    </insert>
+
+
 
 
 </mapper>

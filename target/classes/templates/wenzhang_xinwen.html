@@ -7,15 +7,10 @@
     <title>职位发布</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/page.css">
-    <!--[if lte IE 8]>
-    <link href="css/ie8.css" rel="stylesheet" type="text/css"/>
-    <![endif]-->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/modernizr.js"></script>
-    <!--[if IE]>
-    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
-    <![endif]-->
+    <script type="text/javascript" src="js/wenzhang_xinwen.js"></script>
 </head>
 
 <body style="background: #f6f5fa;">
@@ -45,7 +40,7 @@
             <div class="ctab-Mian-cont">
                 <div class="Mian-cont-btn clearfix">
                     <div class="operateBtn">
-                        <a href="wenzhang_xinwen_fabu.html" class="greenbtn publish">发布文章</a>
+                        <a th:href="@{xinwen_fabu}" class="greenbtn publish">发布文章</a>
                         <a href="javascript:;" class="greenbtn add sp-add">添加分类</a>
                         <a href="javascript:;" class="greenbtn add sp-photo" id="preview">栏目图片</a>
                         <a href="javascript:;" class="modify sp-modify" id="sp-modify">修改</a>
@@ -59,7 +54,7 @@
                     <a href="#">行业新闻<em style="display: none;"></em></a><a href="#">保险常识<em style="display: none;"></em></a>
                 </div>
 
-                <div class="Mian-cont-wrap">
+                <div class="Mian-cont-wrap"  th:object="${pageUtil}">
                     <div class="defaultTab-T">
                         <table border="0" cellspacing="0" cellpadding="0" class="defaultTable">
                             <tbody>
@@ -74,23 +69,14 @@
                     </div>
                     <table border="0" cellspacing="0" cellpadding="0" class="defaultTable defaultTable2">
                         <tbody>
-                        <tr>
-                            <td class="t_1">20150084</td>
-                            <td class="t_2"><a href="#">平安好医生与平安银行开启全面战略合作</a></td>
-                            <td class="t_3">2015-12-01</td>
-                            <td class="t_4">
-                                <div class="btn"><a class="Top">置顶</a><a href="#" class="modify">修改</a><a href="#"
-                                                                                                          class="delete">删除</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr th:each="info :${infoList}">
+                        <tr th:each="info :${infoList}" th:with="df=yyyy-MM-dd">
                             <td class="t_1" th:text="${info.id}"></td>
                             <td class="t_2"><a href="#" th:text="${info.infoTitle}"></a></td>
-                            <td class="t_3" th:text="${info.infoDate}">2015-12-01</td>
+                            <td class="t_3" th:text="${#dates.format(info.infoDate,df)}"></td>
                             <td class="t_4">
-                                <div class="btn"><a class="Top">置顶</a><a th:href="@{upUser(id=${info.id})}" class="modify">修改</a><a
-                                        th:href="@{delUser(id=${info.id})}"
+                                <div class="btn"><a class="Top" id ="top">点赞</a><a th:href="@{upUser(id=${info.id})}"
+                                                                         class="modify">修改</a><a
+                                        th:href="@{delUser(id=${info.id},currentPage=*{currentPage})}"
                                         class="delete">删除</a>
                                 </div>
                             </td>
@@ -98,21 +84,20 @@
                         </tbody>
                     </table>
                     <!--pages S-->
-                    <input type="hidden" name="currentPage" value="1">
-                    <div class="pageSelect" th:object="${pageUtil}">
-                        <span>共 <b th:text="*{totalCount}"></b> 条 每页 <b>5 </b>条  &nbsp;第<b>1</b>页 /共<b
-                                th:text="*{totalPage}"></b>页</span>
+                    <div class="pageSelect">
+                        <input type="text" name="currentPage" th:value="*{currentPage}" id="currentPage" style="display: none">
+                        <span>共 <b th:text="*{totalCount}"></b> 条 每页 <b>5 </b>条&nbsp;当前第<b th:text="*{currentPage}"></b>页 /共<b
+                                th:text="*{totalPage}" id="totalPage"></b>页</span>
                         <div class="pageWrap">
                             <a class="pagePre"><i class="ico-pre">&nbsp;</i></a>
-                            <a href="#" class="pagenumb cur">1</a>
-                            <a href="#" class="pagenumb">2</a>
-                            <a href="#" class="pagenumb">3</a>
+                            <a href="#" class="pagenumb" id="firstPage">首页</a>
+                            <a href="#" class="pagenumb" th:text="*{currentPage}"></a>
+                            <a href="#" class="pagenumb" id ="endPage">尾页</a>
                             <a href="#" class="pagenext"><i class="ico-next">&nbsp;</i></a>
                         </div>
                     </div>
                     <!--pages E-->
                 </div>
-
             </div>
         </div>
     </div>
@@ -309,6 +294,7 @@
 
 
 <script type="text/javascript" src="js/zxxFile.js"></script>
+
 <script>
     var params = {
         fileInput: $("#fileImage").get(0),
