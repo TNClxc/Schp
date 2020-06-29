@@ -65,7 +65,7 @@ public interface UserMapper {
      * @param realName
      * @return hao
      */
-    public List<User> getUserList(@Param("realName")String realName);
+    public List<User> getUserList(@Param("currentPage") int currentPage,@Param("pageSize") int pageSize,@Param("realName")String realName);
 
 
 

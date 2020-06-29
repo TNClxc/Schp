@@ -39,6 +39,6 @@
         select count(*) from schp_user
     </select>
     <select id="getUserList" resultType="com.star.pojo.User" resultMap="getList">
-        SELECT u.*,r.roleName FROM `schp_user` u,`schp_role` r WHERE u.userRoleId=r.id AND u.realName LIKE "%"#{realName}"%"
+        SELECT u.*,r.roleName FROM `schp_user` u,`schp_role` r WHERE u.userRoleId=r.id AND u.realName LIKE "%"#{realName}"%" LIMIT #{currentPage},#{pageSize}
     </select>
 </mapper>

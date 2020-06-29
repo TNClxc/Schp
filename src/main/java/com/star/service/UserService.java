@@ -28,5 +28,5 @@ public interface UserService {
     public int getCount();
 
     //模糊查询人员信息
-    public List<User> getUserList(String realName);
+    public List<User> getUserList(int currentPage,int totalCount,String realName);
 }

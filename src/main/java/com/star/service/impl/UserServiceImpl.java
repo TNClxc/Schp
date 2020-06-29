@@ -52,8 +52,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUserList(String realName) {
-        return userMapper.getUserList(realName);
+    public List<User> getUserList(int currentPage, int totalCount, String realName) {
+        return userMapper.getUserList(currentPage,totalCount,realName);
     }
 
 

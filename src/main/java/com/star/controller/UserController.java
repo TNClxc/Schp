@@ -72,25 +72,28 @@ private UserService userService;
 
     //人员查询
     @RequestMapping("/UserList")
-    public String UserList(HttpServletRequest request, @RequestParam(value = "currentPage",required = false)String currentPage){
+    public String UserList(HttpServletRequest request,
+                           @RequestParam(value = "currentPage",required = false)String currentPage
+                           ){
         if (currentPage == null || currentPage == "") {
             currentPage = "1";
         }
         Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), userService.getCount());
-        List<User> list = userService.userList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
-        request.setAttribute("userList",list );
+        List<User> userList = userService.userList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
+        request.setAttribute("userList",userList );
         request.setAttribute("pageUtil", pageutil);
         return "zixun_Team";
-
-
     }
     //人员模糊查询
     @RequestMapping("/getUserList")
-    public String getUserList(@RequestParam("realName")String realName,HttpServletRequest request){
-        Pageutil pageutil=null;
-        List<User> infoList=userService.getUserList(realName);
-        pageutil = new Pageutil(1, infoList.size());
-        request.setAttribute("infoList",infoList);
+    public String getUserList(@RequestParam(value = "currentPage",required = false)String currentPage,@RequestParam("realName")String realName,HttpServletRequest request){
+        if (currentPage == null || currentPage == "") {
+            currentPage = "1";
+        }
+        Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), userService.getCount());
+        List<User> userList=userService.getUserList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE,realName);
+        pageutil = new Pageutil(1, userList.size());
+        request.setAttribute("userList",userList);
         request.setAttribute("pageUtil", pageutil);
         return "zixun_Team";
     }
