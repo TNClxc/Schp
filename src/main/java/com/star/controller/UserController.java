@@ -76,9 +76,8 @@ private UserService userService;
         if (currentPage == null || currentPage == "") {
             currentPage = "1";
         }
-        Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), 0);
+        Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), userService.getCount());
         List<User> list = userService.userList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
-        pageutil.setTotalCount(list.size());
         request.setAttribute("userList",list );
         request.setAttribute("pageUtil", pageutil);
         return "zixun_Team";

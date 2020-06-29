@@ -34,7 +34,4 @@
         VALUES (#{info.infoTitle}, #{info.infoContent}, #{info.infoType}, NOW(), #{info.userId});
     </insert>
 
-
-
-
 </mapper>
