@@ -44,15 +44,29 @@ public interface UserMapper {
      * @param
      * @return hao
      * */
-    public User checkPwd(@Param("passWord")String passWord);
+    public User checkPwd(@Param("userName")String userName,@Param("passWord")String passWord);
 
     /**
-     * 查询用户
-     * @param pageStart
-     * @param pagesize
+     * 查询人员
+     * @param currentPage
+     * @param pageSize
      * @return hao
      */
-    public List<User> userList(@Param("pageStart")int pageStart, @Param("pagesize")int pagesize);
+    public List<User> userList(@Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
+
+    /**
+     * 查询记录数
+     * @return hao
+     */
+    public int getCount();
+
+    /**
+     * 根据姓名模糊查询人员信息
+     * @param realName
+     * @return hao
+     */
+    public List<User> getUserList(@Param("realName")String realName);
+
 
 
 

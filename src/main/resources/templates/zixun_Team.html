@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class=" js csstransforms3d"><head>
+<html class=" js csstransforms3d" xmlns:th="http://www.thymeleaf.org"><head>
 	<meta charset="utf-8">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,90 +19,49 @@
 
 <body style="background: #f6f5fa;">
 
+<form method="post" th:action="@{/getUserList}">
 	<!--content S-->
 	<div class="super-content">
 		<div class="superCtab">
 			<div class="ctab-title clearfix"><h3>咨询管理</h3><a href="javascript:;" class="sp-column"><i class="ico-export"></i>导出列表</a></div>
-			
+			<div class="searchBar">
+				<input type="text" th:name="realName" id="" value="" class="form-control srhTxt" placeholder="输入子站关键字搜索">
+				<button type="submit" class="srhBtn" >
+			</div>
 			<div class="ctab-Main">
 				
 				<div class="ctab-Mian-cont">
 					<div class="Mian-cont-btn Mian-cont-btn2 clearfix">
-						<div class="operateBtn">
-							<div class="wd-msg">您有  <span>2</span> 条未读咨询信息！</div>
-						</div>
-						<div class="searchBar">
-							<input type="text" id="" value="" class="form-control srhTxt" placeholder="输入子站关键字搜索">
-							<input type="button" class="srhBtn" value="">
-						</div>
-					</div>
-					
-					<div class="Mian-cont-wrap">
-						<div class="defaultTab-T">
+						<div class="Mian-cont-wrap">
 							<table border="0" cellspacing="0" cellpadding="0" class="defaultTable">
-								<tbody><tr><th class="t_1">子站ID</th><th class="t_2_1">子站名称</th><th>操作</th></tr>
-							</tbody></table>
-						</div>
-						<table border="0" cellspacing="0" cellpadding="0" class="defaultTable defaultTable2">
-							<tbody><tr class="wd">
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr class="wd">
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="zixun_dtl.html" class="team-a">张三个人官网</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-						</tbody></table>
-						<!--pages S-->
-						<div class="pageSelect">
-							<span>共 <b>188</b> 条 每页 <b>10 </b>条   1/18</span>
-							<div class="pageWrap">
-								<a class="pagePre"><i class="ico-pre">&nbsp;</i></a>
-								<a href="#" class="pagenumb cur">1</a>
-								<a href="#" class="pagenumb">2</a>
-								<a href="#" class="pagenumb">3</a>
-								<a href="#" class="pagenext"><i class="ico-next">&nbsp;</i></a>
+								<tr><th class="t_1">用户姓名</th><th class="t_2_1">用户名</th><th class="t_3">用户电话</th><th class="t_4">用户权限</th><th>操作</th></tr>
+
+
+
+								<tr th:each="info:${infoList}">
+									<td class="t_1" th:text="${info.realName}"></td>
+									<td class="t_2_1"><a th:href="@{/getPerson(id=${info.id})}" class="team-a" th:text="${info.userName}"></a></td>
+									<td class="t_3" th:text="${info.usePhone}"></td>
+									<td class="t_4" th:text="${info.Role.roleName}" ></td>
+									<td class="alcenter"><a id="del" th:href="@{/delPersons(id=${info.id})}" class="delete export-a">删除</a></td>
+								</tr>
+
+							</table>
+							<!--pages S-->
+							<input type="hidden" name="currentPage" value="1">
+							<div class="pageSelect" th:object="${pageUtil}">
+							<span>共 <b th:text="*{totalCount}"></b> 条 每页 <b>5 </b>条第<b>1</b>页 /共<b
+									th:text="*{totalPage}"></b>页</span>
+								<div class="pageWrap">
+									<a class="pagePre"><i class="ico-pre">&nbsp;</i></a>
+									<a href="#" class="pagenumb cur">1</a>
+									<a href="#" class="pagenumb">2</a>
+									<a href="#" class="pagenumb">3</a>
+									<a href="#" class="pagenext"><i class="ico-next">&nbsp;</i></a>
+								</div>
 							</div>
+							<!--pages E-->
 						</div>
-						<!--pages E-->
-					</div>
 				</div>
 			</div>
 		</div>
@@ -110,7 +69,14 @@
 		
 	</div>
 	<!--content E-->
+</form>
 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+
+
+
+</script>
 
 
 

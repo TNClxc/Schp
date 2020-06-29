@@ -19,8 +19,14 @@ public interface UserService {
     public int upPwd(String passWord,int id);
 
     //修改时查询密码是否正确
-    public User checkPwd(String passWord);
+    public User checkPwd(@Param("userName")String userName,@Param("passWord")String passWord);
 
     //查询用户
-    public List<User> userList(@Param("pageStart")int pageStart);
+    public List<User> userList(int currentPage,int totalCount);
+
+    //查询记录数
+    public int getCount();
+
+    //模糊查询人员信息
+    public List<User> getUserList(String realName);
 }

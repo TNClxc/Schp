@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class=" js csstransforms3d"><head>
+<html class=" js csstransforms3d" xmlns:th="http://www.thymeleaf.org"><head>
 	<meta charset="utf-8">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +7,11 @@
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/page.css">
 	<!--[if lte IE 8]>
-	<link href="css/ie8.css" rel="stylesheet" type="text/css"/>
+	<link  th:href=" @{css/ie8.css}" rel="stylesheet" type="text/css"/>
 	<![endif]-->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="js/modernizr.js"></script>
+	<script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{js/main.js}"></script>
+	<script type="text/javascript" th:src="@{js/modernizr.js}"></script>
 	<!--[if IE]>
 	<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
@@ -27,32 +27,27 @@
 		<!--main-->
 	</div>
 	<!--content E-->
-	<div class="zx-dtlMain">
+	<div class="zx-dtlMain" th:each="list:${list}">
+
 		<dl>
-			<dt>给谁投保：</dt><dd>uimaker</dd>
+			<dt>姓名：</dt><dd th:text="${list.realName}"></dd>
 		</dl>
 		<dl>
-			<dt>您的出生年月：</dt><dd>1980-08-22</dd>
+			<dt>用户名：</dt><dd th:text="${list.userName}"></dd>
 		</dl>
 		<dl>
-			<dt>是否有社保：</dt><dd>是</dd>
+			<dt>用户密码：</dt><dd th:text="${list.passWord}"></dd>
 		</dl>
 		<dl>
-			<dt>保险需求：</dt><dd>保险需求内容</dd>
+			<dt>用户性别：</dt><dd th:text="${list.sex}"></dd>
 		</dl>
 		<dl>
-			<dt>投保年预算：</dt><dd>2万</dd>
+			<dt>用户电话：</dt><dd th:text="${list.usePhone}"></dd>
 		</dl>
-		<dl>
-			<dt>补充说明：</dt><dd>此处为补充说明内容显示</dd>
-		</dl>
-		<dl>
-			<dt>手机：</dt><dd>18652072556</dd>
-		</dl>
-		<dl>
-			<dt>邮箱：</dt><dd>admin@uimaker.com</dd>
-		</dl>
+		<a th:href="@{/getPersons(id=${list.id})}">修改</a>
 	</div>
+
+
 		
 
 

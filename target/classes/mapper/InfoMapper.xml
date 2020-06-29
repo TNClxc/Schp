@@ -5,13 +5,22 @@
 <mapper namespace="com.star.mapper.InfoMapper">
     <select id="getInfoList" resultType="Info">
         select * from schp_info limit #{currentPage},#{pageSize}
-           </select>
-    <select id="getTotalCount" resultType="int"
-    >
-
-    select count(1) from schp_info
-
     </select>
+    <select id="getTotalCount" resultType="int">
+    select count(1) from schp_info
+    </select>
+
+    <select id="getPersonage" resultType="com.star.pojo.User">
+        SELECT * FROM schp_user WHERE id=#{id}
+    </select>
+
+    <delete id="delPerson" parameterType="com.star.pojo.User">
+        DELETE  FROM `schp_user` WHERE id=#{id}
+    </delete>
+
+    <update id="upPerson" parameterType="com.star.pojo.User">
+        UPDATE `schpdb`.`schp_user` SET `realName` = #{upUser.realName},`sex` = #{upUser.sex},`usePhone` = #{upUser.usePhone},`userRoleId` = #{upUser.userRoleId} WHERE `id` = #{upUser.id}
+    </update>
 
 
 </mapper>

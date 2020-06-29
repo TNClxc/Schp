@@ -1,5 +1,6 @@
 package com.star.controller;
 
+import com.star.pojo.User;
 import com.star.service.InfoService;
 import com.star.utils.Pageutil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class InfoController {
@@ -37,5 +39,53 @@ public class InfoController {
             return "wenzhang_xinwen";
         }
 
+    }
+
+    //人员详细信息展示
+    @RequestMapping("/getPerson")
+    public String getPerson(@RequestParam("id")int id,HttpServletRequest request){
+        List<User> list=infoService.getPersonage(id);
+        request.setAttribute("list",list);
+        return "zixun_dtl";
+    }
+
+
+
+    //删除人员信息
+    @RequestMapping("/delPersons")
+    public String delPersons(@RequestParam("id")int id){
+        int flag=infoService.delPerson(id);
+        if (flag>0){
+            System.out.println("删除成功,被删除的Id为"+id);
+            return "redirect:/UserList";
+        }else {
+            System.out.println("删除失败");
+            return "zixun_Team";
+        }
+    }
+    //修改人员信息
+    @RequestMapping("/upPerson")
+    public String upPerson(User upUser){
+        int flag=infoService.upPerson(upUser);
+        if(flag>0){
+            System.out.println("修改后用户"+upUser.getRealName()+upUser.getSex()+upUser.getUsePhone()+upUser.getUserRoleId());
+            return "redirect:/UserList";
+        }else{
+            return "zixun_up";
+        }
+    }
+
+    //人员修改页面
+    @RequestMapping("/zixun_up")
+    public String zixun_up(){
+        return "zixun_up";
+    }
+
+    //修改信息展示
+    @RequestMapping("/getPersons")
+    public String getPersons(@RequestParam("id")int id,HttpServletRequest request){
+        List<User> list=infoService.getPersonage(id);
+        request.setAttribute("list",list);
+        return "zixun_up";
     }
 }
