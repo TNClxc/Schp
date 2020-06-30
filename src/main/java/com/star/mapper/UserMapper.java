@@ -3,6 +3,8 @@ package com.star.mapper;
 import com.star.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserMapper {
     /**
      * 用户登陆
@@ -42,7 +44,29 @@ public interface UserMapper {
      * @param
      * @return hao
      * */
-    public User checkPwd(@Param("passWord")String passWord);
+    public User checkPwd(@Param("userName")String userName,@Param("passWord")String passWord);
+
+    /**
+     * 查询人员
+     * @param currentPage
+     * @param pageSize
+     * @return hao
+     */
+    public List<User> userList(@Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
+
+    /**
+     * 查询记录数
+     * @return hao
+     */
+    public int getCount();
+
+    /**
+     * 根据姓名模糊查询人员信息
+     * @param realName
+     * @return hao
+     */
+    public List<User> getUserList(@Param("currentPage") int currentPage,@Param("pageSize") int pageSize,@Param("realName")String realName);
+
 
 
 

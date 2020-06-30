@@ -2,7 +2,7 @@ $(function () {
     <!-- 总页数 -->
     var totalPage = $("#totalPage").text();
     var path = "/infoList?currentPage=";
-    <!-- 下一页 -->  <!-- 下一页 -->
+    <!-- 下一页 -->
     $(".ico-next").click(function () {
         var $currentPage = $("#currentPage");
         var num = Number($currentPage.val()) + 1;

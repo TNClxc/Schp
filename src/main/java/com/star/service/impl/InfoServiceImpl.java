@@ -2,11 +2,13 @@ package com.star.service.impl;
 
 import com.star.mapper.InfoMapper;
 import com.star.pojo.Info;
+import com.star.pojo.User;
 import com.star.pojo.InfoType;
 import com.star.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Spliterator;
 
@@ -37,6 +39,20 @@ public class InfoServiceImpl implements InfoService {
         return infoMapper.getTotalCount();
     }
 
+    @Override
+    public List<User> getPersonage(int id) {
+        return infoMapper.getPersonage(id);
+    }
+
+    @Override
+    public int delPerson(int id) {
+        return infoMapper.delPerson(id);
+    }
+
+    @Override
+    public int upPerson(User upUser) {
+        return infoMapper.upPerson(upUser);
+    }
     /**
      * 删除用户
      *

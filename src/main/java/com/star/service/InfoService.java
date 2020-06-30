@@ -1,6 +1,7 @@
 package com.star.service;
 
 import com.star.pojo.Info;
+import com.star.pojo.User;
 import com.star.pojo.InfoType;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,7 +24,26 @@ public interface InfoService {
     public int getTotalCount();
 
     /**
-     * 删除发布职位信息
+     * 查询人员的详细信息
+     * @param id
+     * @return hao
+     */
+    public List<User> getPersonage( int id);
+
+    /**
+     * 删除人员信息
+     * @param id
+     * @return hao
+     */
+    public int delPerson(int id);
+
+    /**
+     *人员信息修改
+     * @param upUser
+     * @return hao
+     */
+    public int upPerson(@Param("upUser")User upUser);
+     /*删除发布职位信息
      * @param infoId
      * @return lai
      */
@@ -41,8 +61,5 @@ public interface InfoService {
      * @return lai
      */
     public int infoAdd(Info info);
-
-
-
 
 }

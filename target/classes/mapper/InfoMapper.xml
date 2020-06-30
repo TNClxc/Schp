@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.star.mapper.InfoMapper">
-
     <!-- 分页查询全部信息 -->
     <select id="getInfoList" resultType="Info">
         select * from schp_info  order by id desc limit #{currentPage},#{pageSize}
@@ -34,8 +33,5 @@
         INSERT INTO `schpdb`.`schp_info` ( `infoTitle`, `infoContent`, `infoType`, `infoDate`, `userId`)
         VALUES (#{info.infoTitle}, #{info.infoContent}, #{info.infoType}, NOW(), #{info.userId});
     </insert>
-
-
-
 
 </mapper>

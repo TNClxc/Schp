@@ -1,7 +1,9 @@
 package com.star.controller;
 
+
 import com.star.pojo.Info;
 import com.star.pojo.Praise;
+
 import com.star.pojo.User;
 import com.star.service.InfoService;
 import com.star.service.PraiseService;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+
 
 @Controller
 public class InfoController {
@@ -163,6 +167,7 @@ public class InfoController {
         System.out.println("用户编号：" + userId + "  信息编号：" + infoId + "     取消点赞" + (result > 0 ? "成功" : "失败"));
         return result > 0 ? "delSuccess" : "";
     }
+
 
 
 }
