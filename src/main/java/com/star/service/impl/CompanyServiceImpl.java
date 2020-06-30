@@ -4,9 +4,10 @@ import com.star.mapper.CompanyMapper;
 import com.star.pojo.Company;
 import com.star.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CompanyServiceImpl implements CompanyService {
 
     @Autowired

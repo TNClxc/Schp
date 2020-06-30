@@ -17,25 +17,33 @@ public class CompanyController {
     @Autowired
     CompanyService companyService;
 
-    @RequestMapping("/huodong_ChaoGuan")
-    public String huodong_ChaoGuan(){
-
-
-        return "huodong_ChaoGuan";
-    }
-
-    @RequestMapping("/getCompanyList")
-    public String CompanyList(HttpServletRequest request,@RequestParam(value = "currentPage", required = false) String currentPage) {
-
+    /**
+     * 全部企业信息
+     *
+     * @return lai
+     */
+    @RequestMapping("/huodong_guanli")
+    public String huodong_guanli(HttpServletRequest request,
+                                 @RequestParam(value = "currentPage", required = false) String currentPage) {
 
         if (currentPage == null || currentPage == "") {
             currentPage = "1";
         }
         Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), companyService.getTotalCount());
         List<Company> companyList = companyService.getCompanyList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
-        request.setAttribute("getCompany",companyList);
-        return "huodong_ChaoGuan";
+        request.setAttribute("getCompany", companyList);
+        return "huodong_guanli";
     }
 
+    /**
+     * 查看企业下的文章及人员
+     *
+     * @return lai
+     */
+    @RequestMapping("/huodong_ChaoGuan")
+    public String huodong_ChaoGuan() {
 
+
+        return "huodong_ChaoGuan";
+    }
 }

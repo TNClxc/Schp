@@ -4,8 +4,8 @@ public class Company
 {
     private int id ;
     private String companyName ;
-    private int companyContent ;
-    private int companyPhone ;
+    private String companyContent ;
+    private String companyPhone ;
 
 
     //该公司下面的所有员工
@@ -27,19 +27,19 @@ public class Company
         this.companyName = companyName;
     }
 
-    public int getCompanyContent() {
+    public String getCompanyContent() {
         return companyContent;
     }
 
-    public void setCompanyContent(int companyContent) {
+    public void setCompanyContent(String companyContent) {
         this.companyContent = companyContent;
     }
 
-    public int getCompanyPhone() {
+    public String getCompanyPhone() {
         return companyPhone;
     }
 
-    public void setCompanyPhone(int companyPhone) {
+    public void setCompanyPhone(String companyPhone) {
         this.companyPhone = companyPhone;
     }
 }
