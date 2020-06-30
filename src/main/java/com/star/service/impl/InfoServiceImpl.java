@@ -10,18 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Spliterator;
 
-/**
- * @author
- *               ♥♥♥  ♥♥♥
- *            ♥♥♥♥♥♥♥♥♥♥♥♥♥♥
- *          ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
- *         ♥♥♥♥♥♥赖桑悦悦♥♥♥♥♥♥
- *          ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
- *            ♥♥♥♥♥♥♥♥♥♥♥♥♥♥
- *              ♥♥♥♥♥♥♥♥♥
- *                ♥♥♥♥♥♥
- *                  ♥
- */
 @Service
 public class InfoServiceImpl implements InfoService {
 
@@ -30,7 +18,6 @@ public class InfoServiceImpl implements InfoService {
 
     /**
      * 分页 传入当前页数 和 页面容量
-     *
      * @param currentPage
      * @param totalCount
      * @return
