@@ -25,13 +25,19 @@ public class CompanyController {
     @RequestMapping("/huodong_guanli")
     public String huodong_guanli(HttpServletRequest request,
                                  @RequestParam(value = "currentPage", required = false) String currentPage) {
-
         if (currentPage == null || currentPage == "") {
             currentPage = "1";
         }
         Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), companyService.getTotalCount());
         List<Company> companyList = companyService.getCompanyList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
+
+
+        for (int i = 1 ;i<companyList.size();i++){
+            System.out.println(companyList.get(i));
+
+        }
         request.setAttribute("getCompany", companyList);
+        request.setAttribute("pageUtil",pageutil);
         return "huodong_guanli";
     }
 

@@ -106,12 +106,14 @@
 						</tbody></table>
 						<!--pages S-->
 						<div class="pageSelect">
-							<span>共 <b>188</b> 条 每页 <b>10 </b>条   1/18</span>
+							<input type="text" name="currentPage" th:value="*{currentPage}" id="currentPage" style="display: none">
+							<span>共 <b th:text="*{totalCount}"></b> 条 每页 <b>5 </b>条&nbsp;当前第<b th:text="*{currentPage}"></b>页 /共<b
+									th:text="*{totalPage}" id="totalPage"></b>页</span>
 							<div class="pageWrap">
 								<a class="pagePre"><i class="ico-pre">&nbsp;</i></a>
-								<a href="#" class="pagenumb cur">1</a>
-								<a href="#" class="pagenumb">2</a>
-								<a href="#" class="pagenumb">3</a>
+								<a href="#" class="pagenumb" id="firstPage">首页</a>
+								<a href="#" class="pagenumb" th:text="*{currentPage}"></a>
+								<a href="#" class="pagenumb" id ="endPage">尾页</a>
 								<a href="#" class="pagenext"><i class="ico-next">&nbsp;</i></a>
 							</div>
 						</div>
