@@ -5,26 +5,29 @@
 <mapper namespace="com.star.mapper.CompanyMapper">
 
 
-    <resultMap id="CompanyMap" type="Company">
+    <resultMap id="CompanyMap" type="Company" autoMapping="true">
         <id property="id" column="id"/>
-        <result property="companyName" column="companyName"/>
-        <result property="companyContent" column="companyContent"/>
-        <result property="companyPhone" column="companyPhone"/>
         <collection property="userList" autoMapping="true" ofType="User">
             <id property="id" column="u_id"/>
-            <association property="Role" javaType="com.star.pojo.Role">
-                <id  property="id" column="userRoleId"/>
-                <result column="roleName" property="roleName" />
+            <association property="Role" javaType="com.star.pojo.Role" autoMapping="true">
+                <id property="id" column="userRoleId"/>
             </association>
         </collection>
     </resultMap>
-
     <!-- 分页查询全部信息 -->
-    <select id="getCompanyList" resultMap="CompanyMap">
-        select *,u.id as 'u_id'
+    <select id="getCompanyList" resultType="Company">
+        select *
+        from schp_company
+        order by id desc
+        limit #{currentPage},#{pageSize}
+    </select>
+
+    <!-- 分页查询全部信息Map -->
+    <select id="getCompanyMap" resultMap="CompanyMap">
+        select *, u.id as 'u_id'
         from schp_company c,
-            schp_user u,
-            schp_role r
+             schp_user u,
+             schp_role r
         where c.id = u.companyId
           and u.userRoleId = r.id
         order by c.id desc
@@ -40,11 +43,10 @@
     </select>
 
     <!-- 删除职位信息 -->
-    <delete id="delInfo">
+    <delete id="delCompany" parameterType="com.star.pojo.Company">
         delete
         from schp_company
         where id = #{id}
-
     </delete>
 
     <!--查询文章分类  -->

@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface PersonService {
     /**
-     <<<<<<< HEAD
      * 查询人员的详细信息
      * @param id
      * @return hao

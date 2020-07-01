@@ -1,7 +1,6 @@
 package com.star.controller;
 
 import com.star.pojo.User;
-import com.star.service.InfoService;
 import com.star.service.PersonService;
 import com.star.service.UserService;
 import com.star.utils.Pageutil;
@@ -21,8 +20,10 @@ public class UserController {
     private PersonService personService;
     @Resource
     private UserService userService;
-
-    //人员详细信息展示
+    /**
+     *
+     人员详细信息展示
+     */
     @RequestMapping("/getPerson")
     public String getPerson(@RequestParam("id") int id, HttpServletRequest request) {
         List<User> list = personService.getPersonage(id);
@@ -30,8 +31,6 @@ public class UserController {
         return "zixun_dtl";
     }
 
-
-    //删除人员信息
     @RequestMapping("/delPersons")
     public String delPersons(@RequestParam("id") int id) {
         int flag = personService.delPerson(id);
@@ -44,7 +43,6 @@ public class UserController {
         }
     }
 
-    //修改人员信息
     @RequestMapping("/upPerson")
     public String upPerson(User upUser) {
         int flag = personService.upPerson(upUser);
@@ -56,7 +54,6 @@ public class UserController {
         }
     }
 
-    //人员修改页面
     @RequestMapping("/zixun_up")
     public String zixun_up() {
         return "zixun_up";
