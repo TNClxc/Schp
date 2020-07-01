@@ -73,6 +73,7 @@ public class UserController {
 
     //人员查询
     @RequestMapping("/UserList")
+
     public String UserList(HttpServletRequest request,
                            @RequestParam(value = "currentPage", required = false) String currentPage
     ) {
@@ -81,10 +82,6 @@ public class UserController {
         }
         Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), userService.getCount());
         List<User> userList = userService.userList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
-        for (int i = 0; i < userList.size(); i++) {
-            System.out.print(userList.get(i));
-            System.out.println(userList.get(i).getRole().getId());
-        }
         request.setAttribute("userList", userList);
         request.setAttribute("pageUtil", pageutil);
         return "zixun_Team";
