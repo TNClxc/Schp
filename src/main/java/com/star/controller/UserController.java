@@ -19,8 +19,8 @@ public class UserController {
 
     @Resource
     private PersonService personService;
-@Resource
-private UserService userService;
+    @Resource
+    private UserService userService;
     //人员详细信息展示
     @RequestMapping("/getPerson")
     public String getPerson(@RequestParam("id")int id,HttpServletRequest request){

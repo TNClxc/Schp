@@ -18,7 +18,7 @@ public class CompanyServiceImpl implements CompanyService {
      *
      * @param currentPage
      * @param pageSize
-     * @return lai
+     * @return hao
      */
     @Override
     public List<Company> getCompanyList(int currentPage, int pageSize) {
@@ -28,10 +28,20 @@ public class CompanyServiceImpl implements CompanyService {
     /**
      * 总记录数
      *
-     * @return lai
+     * @return hao
      */
     @Override
     public int getTotalCount() {
         return companyMapper.getTotalCount();
+    }
+
+    /**
+     * 删除企业信息
+     * @param id
+     * @return
+     */
+    @Override
+    public int delCompany(int id) {
+        return companyMapper.delCompany(id);
     }
 }

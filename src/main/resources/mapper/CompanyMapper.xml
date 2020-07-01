@@ -17,11 +17,10 @@
     </select>
 
     <!-- 删除职位信息 -->
-    <delete id="delInfo">
+    <delete id="delCompany" parameterType="com.star.pojo.Company">
         delete
         from schp_company where
         id=#{id}
-
     </delete>
 
     <!--查询文章分类  -->
