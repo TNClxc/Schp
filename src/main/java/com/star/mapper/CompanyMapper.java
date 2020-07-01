@@ -30,6 +30,34 @@ public interface CompanyMapper {
      */
     public int delCompany(@Param("id")int id);
 
+    /**
+     * 添加公司信息
+     * @param company
+     * @return hao
+     */
+    public int insetCompany(@Param("company") Company company);
+
+    /**
+     * 查看公司详细信息
+     * @param id
+     * @return hao
+     */
+    public List<Company> getCompany(@Param("id")int id);
+
+    /**
+     * 根据公司名查询
+     * @param companyName
+     * @return hao
+     */
+    public List<Company> getListOfCompany(@Param("companyName")String companyName);
+
+    /**
+     * 修改公司信息
+     * @param company
+     * @return hao
+     */
+    public int upOfCompany(@Param("company")Company company);
+
 
 
 }
