@@ -9,36 +9,9 @@ public class User {
     private String usePhone;
     private int userRoleId;
     private Role Role;
+    private int companyId;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", realName='" + realName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
-                ", sex='" + sex + '\'' +
-                ", usePhone='" + usePhone + '\'' +
-                ", userRoleId=" + userRoleId +
-                ", Role=" + Role +
-                '}';
-    }
 
-    public Role getRole() {
-        return Role;
-    }
-
-    public void setRole(Role Role) {
-        this.Role = Role;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public int getId() {
         return id;
@@ -54,6 +27,14 @@ public class User {
 
     public void setRealName(String realName) {
         this.realName = realName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassWord() {
@@ -86,5 +67,36 @@ public class User {
 
     public void setUserRoleId(int userRoleId) {
         this.userRoleId = userRoleId;
+    }
+
+    public com.star.pojo.Role getRole() {
+        return Role;
+    }
+
+    public void setRole(com.star.pojo.Role role) {
+        Role = role;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", realName='" + realName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", sex=" + sex +
+                ", usePhone='" + usePhone + '\'' +
+                ", userRoleId=" + userRoleId +
+                ", Role=" + Role +
+                ", companyId=" + companyId +
+                '}';
     }
 }

@@ -30,14 +30,8 @@ public class CompanyController {
         }
         Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), companyService.getTotalCount());
         List<Company> companyList = companyService.getCompanyList(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
-
-
-        for (int i = 1 ;i<companyList.size();i++){
-            System.out.println(companyList.get(i));
-
-        }
         request.setAttribute("getCompany", companyList);
-        request.setAttribute("pageUtil",pageutil);
+        request.setAttribute("pageUtil", pageutil);
         return "huodong_guanli";
     }
 
@@ -48,8 +42,6 @@ public class CompanyController {
      */
     @RequestMapping("/huodong_ChaoGuan")
     public String huodong_ChaoGuan() {
-
-
         return "huodong_ChaoGuan";
     }
 }

@@ -37,13 +37,12 @@
 							<table border="0" cellspacing="0" cellpadding="0" class="defaultTable">
 								<tr><th class="t_1">用户姓名</th><th class="t_2_1">用户名</th><th class="t_3">用户电话</th><th class="t_4">用户权限</th><th>操作</th></tr>
 								<tr th:each="user:${userList}">
-									<td class="t_1" th:text="${user.realName}"></td>
+									<td class="t_1" th:text="${user.id}"></td>
 									<td class="t_2_1"><a th:href="@{/getPerson(id=${user.id})}" class="team-a" th:text="${user.userName}"></a></td>
 									<td class="t_3" th:text="${user.usePhone}"></td>
-									<td class="t_4" th:text="${user.Role.roleName}" ></td>
+									<td class="t_4" th:text="${user.Role.id}" ></td>
 									<td class="alcenter"><a id="del" th:href="@{/delPersons(id=${user.id})}" class="delete export-a">删除</a></td>
 								</tr>
-
 							</table>
 							<!--pages S-->
 							<div class="pageSelect">
