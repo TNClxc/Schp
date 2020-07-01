@@ -10,28 +10,18 @@
         <result property="companyName" column="companyName"/>
         <result property="companyContent" column="companyContent"/>
         <result property="companyPhone" column="companyPhone"/>
-        <collection property="userList" resultMap="user">
-
+        <collection property="userList" autoMapping="true" ofType="User">
+            <id property="id" column="u_id"/>
+            <association property="Role" javaType="com.star.pojo.Role">
+                <id  property="id" column="userRoleId"/>
+                <result column="roleName" property="roleName" />
+            </association>
         </collection>
     </resultMap>
-    <resultMap id="user" type="com.star.pojo.User">
-        <id property="id" column="id"/>
-        <result property="realName" column="realName"/>
-        <result property="userName" column="userName"/>
-        <result property="passWord" column="passWord"/>
-        <result property="sex" column="sex"/>
-        <result property="usePhone" column="usePhone"/>
-        <result property="userRoleId" column="id"/>
-        <collection property="Role" javaType="com.star.pojo.Role">
-            <id column="id" property="id"/>
-            <result column="roleName" property="roleName"></result>
-        </collection>
-    </resultMap>
-
 
     <!-- 分页查询全部信息 -->
     <select id="getCompanyList" resultMap="CompanyMap">
-        select *
+        select *,u.id as 'u_id'
         from schp_company c,
             schp_user u,
             schp_role r

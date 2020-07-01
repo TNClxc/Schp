@@ -64,71 +64,26 @@
 								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
 								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
 							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
+							<tr th:each="company:${companyList}">
+								<td class="t_1">${company.companyName}</td>
+								<td class="t_2_1"><a href="huodong_PinDao.html">${company.companyContent}</a></td>
+								<td class="t_3"><a href="huodong_Team.html" class="team-a">${company.userList.size}</a></td>
+								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">文章数量</a></td>
+								<td class="alcenter"><a href="#" class="export-a">操作</a></td>
 							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
-							<tr>
-								<td class="t_1">2015001</td>
-								<td class="t_2_1"><a href="huodong_PinDao.html">太平洋人寿保险频道</a></td>
-								<td class="t_3"><a href="huodong_Team.html" class="team-a">158</a></td>
-								<td class="t_4"><a href="huodong_ZiZhan.html" class="sonwb-a">1141</a></td>
-								<td class="alcenter"><a href="#" class="export-a">导出数据</a></td>
-							</tr>
+
+
 						</tbody></table>
 						<!--pages S-->
 						<div class="pageSelect">
-							<span>共 <b>188</b> 条 每页 <b>10 </b>条   1/18</span>
+							<input type="text" name="currentPage" th:value="*{currentPage}" id="currentPage" style="display: none">
+							<span>共 <b th:text="*{totalCount}"></b> 条 每页 <b>5 </b>条&nbsp;当前第<b th:text="*{currentPage}"></b>页 /共<b
+									th:text="*{totalPage}" id="totalPage"></b>页</span>
 							<div class="pageWrap">
 								<a class="pagePre"><i class="ico-pre">&nbsp;</i></a>
-								<a href="#" class="pagenumb cur">1</a>
-								<a href="#" class="pagenumb">2</a>
-								<a href="#" class="pagenumb">3</a>
+								<a href="#" class="pagenumb" id="firstPage">首页</a>
+								<a href="#" class="pagenumb" th:text="*{currentPage}"></a>
+								<a href="#" class="pagenumb" id ="endPage">尾页</a>
 								<a href="#" class="pagenext"><i class="ico-next">&nbsp;</i></a>
 							</div>
 						</div>

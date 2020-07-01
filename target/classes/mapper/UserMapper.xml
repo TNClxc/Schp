@@ -10,10 +10,10 @@
         <result property="passWord" column="passWord"/>
         <result property="sex" column="sex"/>
         <result property="usePhone" column="usePhone"/>
-        <result property="userRoleId" column="id"/>
+        <result property="userRoleId" column="userRoleId"/>
         <collection property="Role" javaType="com.star.pojo.Role">
-            <id column="id" property="id"/>
-            <result column="roleName" property="roleName"></result>
+            <id  property="id" column="userRoleId"/>
+            <result column="roleName" property="roleName" />
         </collection>
     </resultMap>
 
