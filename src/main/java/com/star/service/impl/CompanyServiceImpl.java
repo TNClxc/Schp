@@ -6,6 +6,7 @@ import com.star.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -43,5 +44,37 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public int delCompany(int id) {
         return companyMapper.delCompany(id);
+    }
+
+    @Override
+    public int insetCompany(Company company) {
+        return companyMapper.insetCompany(company);
+    }
+
+    @Override
+    public List<Company> getCompany(int id) {
+        return companyMapper.getCompany(id);
+    }
+
+    @Override
+    public List<Company> getListOfCompany(String companyName) {
+        return companyMapper.getListOfCompany(companyName);
+    }
+
+    @Override
+    public int upOfCompany(Company company) {
+        return companyMapper.upOfCompany(company);
+    }
+
+    /**
+     * 查询公司下的员工
+     *
+     * @param currentPage
+     * @param pageSize
+     * @return lai
+     */
+    @Override
+    public List<Company> getCompanyMap(int currentPage, int pageSize) {
+        return companyMapper.getCompanyMap(currentPage,pageSize);
     }
 }

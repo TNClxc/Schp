@@ -2,13 +2,50 @@ package com.star.pojo;
 
 import java.util.List;
 
-public class Company {
-    private int id;
-    private String companyName;
-    private String companyContent;
-    private String companyPhone;
+public class Company
+{
+    private int id ;
+    private String companyName ;
+    private String companyContent ;
+    private String companyPhone ;
+    private String companyAddress;
+    private int companyCapital;
     private List<User> userList;
+    private List<Info> infoList;
 
+    public List<Info> getInfoList() {
+        return infoList;
+    }
+
+    public void setInfoList(List<Info> infoList) {
+        this.infoList = infoList;
+    }
+
+    private  int userCount;
+
+    public int getUserCount() {
+        return userCount;
+    }
+
+    public void setUserCount(int userCount) {
+        this.userCount = userCount;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
+
+    public int getCompanyCapital() {
+        return companyCapital;
+    }
+
+    public void setCompanyCapital(int companyCapital) {
+        this.companyCapital = companyCapital;
+    }
 
     //该公司下面的所有员工
 

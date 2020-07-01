@@ -19,6 +19,7 @@
 
 <body style="background: #f6f5fa;">
 
+<form th:action="@{/getOfCompany}" method="post">
 	<!--content S-->
 	<div class="super-content">
 		<div class="superCtab">
@@ -35,12 +36,12 @@
 				<div class="ctab-Mian-cont">
 					<div class="Mian-cont-btn clearfix">
 						<div class="operateBtn">
-							<a href="huodong_fabu.html" class="greenbtn publish">新增公司</a>
+							<a th:href="@{/company}" class="greenbtn publish">新增公司</a>
 
 						</div>
 						<div class="searchBar">
-							<input type="text" id="" value="" class="form-control srhTxt" placeholder="输入标题关键字搜索">
-							<input type="button" class="srhBtn" value="">
+							<input type="text" id="" name="companyName" value="" class="form-control srhTxt" placeholder="输入标题关键字搜索">
+							<input type="submit" class="srhBtn" value="">
 						</div>
 					</div>
 
@@ -58,7 +59,7 @@
 								<td class="t_1" ><a href="huodong_content.html" th:text="${getCompany.companyName}"></a></td>
 								<td class="t_2" th:text="${getCompany.companyContent}"></td>
 								<td class="t_3" th:text="${getCompany.companyPhone}"></td>
-								<td class="t_4"><div class="btn"><a class="Top">置顶</a><a href="#" class="modify">修改</a><a th:href="@{/delCompanys(id=${getCompany.id})}" class="delete">删除</a></div></td>
+								<td class="t_4"><div class="btn"><a th:href="@{/getCompany(id=${getCompany.id})}" class="Top">查看详细</a><a th:href="@{/getCompanyss(id=${getCompany.id})}" class="modify">修改</a><a th:href="@{/delCompanys(id=${getCompany.id},currentPage=*{currentPage})}" class="delete">删除</a></div></td>
 							</tr>
 						</tbody>
 						</table>
@@ -83,6 +84,7 @@
 		<!--main-->
 		
 	</div>
+</form>
 	<!--content E-->
 	<!--点击修改弹出层-->
 	<div class="layuiBg" style="display: none; height: 757px;"></div><!--公共遮罩-->
