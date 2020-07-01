@@ -59,7 +59,7 @@
 								<td class="t_1" ><a href="huodong_content.html" th:text="${getCompany.companyName}"></a></td>
 								<td class="t_2" th:text="${getCompany.companyContent}"></td>
 								<td class="t_3" th:text="${getCompany.companyPhone}"></td>
-								<td class="t_4"><div class="btn"><a th:href="@{/getCompany(id=${getCompany.id})}" class="Top">查看详细</a><a th:href="@{/getCompanyss(id=${getCompany.id})}" class="modify">修改</a><a th:href="@{/delCompanys(id=${getCompany.id},currentPage=*{currentPage})}" class="delete">删除</a></div></td>
+								<td class="t_4"><div class="btn"><a th:href="@{/getCompany(id=${getCompany.id})}" class="Top" >查看详细</a><a th:href="@{/getCompanyss(id=${getCompany.id})}" class="modify" th:if="${session.user.userRoleId} eq 2">修改</a><a th:href="@{/delCompanys(id=${getCompany.id},currentPage=*{currentPage})}" class="delete" th:if="${session.user.userRoleId} eq 2">删除</a></div></td>
 							</tr>
 						</tbody>
 						</table>
