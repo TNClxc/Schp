@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.star.mapper.CompanyMapper">
+
+
+    <resultMap id="CompanyMap" type="Company">
+        <id property="id" column="id"/>
+        <result property="companyName" column="companyName"/>
+        <result property="companyContent" column="companyContent"/>
+        <result property="companyPhone" column="companyPhone"/>
+        <collection property="userList" resultMap="user">
+
+        </collection>
+    </resultMap>
+    <resultMap id="user" type="com.star.pojo.User">
+        <id property="id" column="id"/>
+        <result property="realName" column="realName"/>
+        <result property="userName" column="userName"/>
+        <result property="passWord" column="passWord"/>
+        <result property="sex" column="sex"/>
+        <result property="usePhone" column="usePhone"/>
+        <result property="userRoleId" column="id"/>
+        <collection property="Role" javaType="com.star.pojo.Role">
+            <id column="id" property="id"/>
+            <result column="roleName" property="roleName"></result>
+        </collection>
+    </resultMap>
+
+
+    <!-- 分页查询全部信息 -->
+    <select id="getCompanyList" resultMap="CompanyMap">
+        select *
+        from schp_company c,
+            schp_user u,
+            schp_role r
+        where c.id = u.companyId
+          and u.userRoleId = r.id
+        order by c.id desc
+        limit #{currentPage},#{pageSize}
+    </select>
+
+    <!-- 统计职位总记录数 -->
+    <select id="getTotalCount" resultType="int">
+
+        select count(1)
+        from schp_company
+
+    </select>
+
+    <!-- 删除职位信息 -->
+    <delete id="delInfo">
+        delete
+        from schp_company
+        where id = #{id}
+
+    </delete>
+
+    <!--查询文章分类  -->
+
+
+    <!--发布职位信息-->
+
+
+</mapper>

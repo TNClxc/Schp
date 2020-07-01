@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class=" js csstransforms3d"><head>
+<html class=" js csstransforms3d" xmlns:th="http://www.thymeleaf.org"><head>
 	<meta charset="utf-8">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,8 +27,8 @@
 			<div class="ctab-Main">
 				<div class="ctab-Main-title">
 					<ul class="clearfix">
-						<li><a href="huodong_guanli.html">活动发布</a></li>
-						<li class="cur"><a href="huodong_ChaoGuan.html">报名信息</a></li>
+						<li ><a th:href="@{/huodong_guanli}">企业管理</a></li>
+						<li class="cur"><a th:href="@{/huodong_ChaoGuan}">企业人员及文章</a></li>
 					</ul>
 				</div>
 				

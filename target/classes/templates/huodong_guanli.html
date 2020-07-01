@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class=" js csstransforms3d"><head>
+<html class=" js csstransforms3d" xmlns:th="http://www.thymeleaf.org"><head>
 	<meta charset="utf-8">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,8 +27,8 @@
 			<div class="ctab-Main">
 				<div class="ctab-Main-title">
 					<ul class="clearfix">
-						<li class="cur"><a href="huodong_guanli.html">活动发布</a></li>
-						<li><a href="huodong_ChaoGuan.html">报名信息</a></li>
+						<li class="cur"><a th:href="@{/huodong_guanli}">企业管理</a></li>
+						<li><a th:href="@{/huodong_ChaoGuan}">企业人员及文章</a></li>
 					</ul>
 				</div>
 				
@@ -106,12 +106,14 @@
 						</tbody></table>
 						<!--pages S-->
 						<div class="pageSelect">
-							<span>共 <b>188</b> 条 每页 <b>10 </b>条   1/18</span>
+							<input type="text" name="currentPage" th:value="*{currentPage}" id="currentPage" style="display: none">
+							<span>共 <b th:text="*{totalCount}"></b> 条 每页 <b>5 </b>条&nbsp;当前第<b th:text="*{currentPage}"></b>页 /共<b
+									th:text="*{totalPage}" id="totalPage"></b>页</span>
 							<div class="pageWrap">
 								<a class="pagePre"><i class="ico-pre">&nbsp;</i></a>
-								<a href="#" class="pagenumb cur">1</a>
-								<a href="#" class="pagenumb">2</a>
-								<a href="#" class="pagenumb">3</a>
+								<a href="#" class="pagenumb" id="firstPage">首页</a>
+								<a href="#" class="pagenumb" th:text="*{currentPage}"></a>
+								<a href="#" class="pagenumb" id ="endPage">尾页</a>
 								<a href="#" class="pagenext"><i class="ico-next">&nbsp;</i></a>
 							</div>
 						</div>
