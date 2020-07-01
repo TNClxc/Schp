@@ -75,9 +75,9 @@
                             <td class="t_3" th:text="${#dates.format(info.infoDate,df)}"></td>
                             <td class="t_4">
                                 <div class="btn"><a class="Top" id ="top">点赞</a><a th:href="@{upUser(id=${info.id})}"
-                                                                         class="modify">修改</a><a
+                                                                         class="modify" th:if="${session.user.userRoleId} eq 2">修改</a><a
                                         th:href="@{delUser(id=${info.id},currentPage=*{currentPage})}"
-                                        class="delete">删除</a>
+                                        class="delete" th:if="${session.user.userRoleId} eq 2">删除</a>
                                 </div>
                             </td>
                         </tr>

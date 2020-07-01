@@ -35,13 +35,16 @@
 					<div class="Mian-cont-btn Mian-cont-btn2 clearfix">
 						<div class="Mian-cont-wrap" th:object="${pageUtil}">
 							<table border="0" cellspacing="0" cellpadding="0" class="defaultTable">
-								<tr><th class="t_1">用户姓名</th><th class="t_2_1">用户名</th><th class="t_3">用户电话</th><th class="t_4">用户权限</th><th>操作</th></tr>
+								<tr><th class="t_1">用户姓名</th><th class="t_2_1">用户名</th><th class="t_3">用户电话</th><th class="t_4">用户权限</th><th th:if="${session.user.userRoleId} eq 2">操作</th></tr>
 								<tr th:each="user:${userList}">
 									<td class="t_1" th:text="${user.realName}"></td>
 									<td class="t_2_1"><a th:href="@{/getPerson(id=${user.id})}" class="team-a" th:text="${user.userName}"></a></td>
 									<td class="t_3" th:text="${user.usePhone}"></td>
 									<td class="t_4" th:text="${user.Role.roleName}" ></td>
-									<td class="alcenter"><a id="del" th:if="${session.user.userRoleId} eq 2" th:href="@{/delPersons(id=${user.id})}" class="delete export-a">删除</a></td>
+									<td class="alcenter">
+										<a class="export-a" th:if="${session.user.userRoleId} eq 2" th:href="@{/getPersons(id=${user.id})}">修改</a>
+										<a id="del" th:if="${session.user.userRoleId} eq 2" th:href="@{/delPersons(id=${user.id})}" class="delete export-a">删除</a>
+									</td>
 								</tr>
 
 							</table>
