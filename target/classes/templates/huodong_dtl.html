@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class=" js csstransforms3d" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>咨询管理-通用咨询详情页</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/page.css">
+    <!--[if lte IE 8]>
+    <link  th:href=" @{css/ie8.css}" rel="stylesheet" type="text/css"/>
+    <![endif]-->
+    <script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/main.js}"></script>
+    <script type="text/javascript" th:src="@{js/modernizr.js}"></script>
+    <!--[if IE]>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+
+<body style="background: #f6f5fa;">
+
+<!--content S-->
+<div class="super-content">
+    <div class="superCtab">
+        <div class="ctab-title zxtop-title clearfix"><h3>公司详细信息</h3><a th:href="@{/back}" class="backlistBtn"><i class="ico-back"></i>返回列表</a></div>
+    </div>
+    <!--main-->
+</div>
+<!--content E-->
+<div class="zx-dtlMain" th:each="list:${list}">
+
+    <dl>
+        <dt>公司名：</dt><dd th:text="${list.companyName}"></dd>
+    </dl>
+    <dl>
+        <dt>公司介绍：</dt><dd th:text="${list.companyContent}"></dd>
+    </dl>
+    <dl>
+        <dt>公司电话：</dt><dd th:text="${list.companyPhone}"></dd>
+    </dl>
+    <dl>
+        <dt>公司地址：</dt><dd th:text="${list.companyAddress}"></dd>
+    </dl>
+    <dl>
+        <dt>注册资金：</dt><dd th:text="${list.companyCapital}+'(/万元)'"></dd>
+    </dl>
+</div>
+
+
+
+
+
+</body></html>

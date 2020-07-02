@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+/**
+ * @author TNClxc
+ */
 @Service
 public class CompanyServiceImpl implements CompanyService {
 

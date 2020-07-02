@@ -84,4 +84,28 @@ public class InfoServiceImpl implements InfoService {
     public int infoAdd(Info info) {
         return infoMapper.infoAdd(info);
     }
+
+    /**
+     * 修改发布信息
+     *
+     * @param info
+     * @return lai
+     */
+    @Override
+    public int upInfo(Info info) {
+        return infoMapper.upInfo(info);
+    }
+
+    /**
+     * 按ID查询info信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Info getInfoById(int id) {
+        return infoMapper.getInfoById(id);
+    }
+
+
 }

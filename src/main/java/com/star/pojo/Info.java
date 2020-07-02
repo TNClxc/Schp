@@ -67,4 +67,5 @@ public class Info {
     public void setInfoPraise(int infoPraise) {
         this.infoPraise = infoPraise;
     }
+
 }

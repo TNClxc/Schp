@@ -60,9 +60,9 @@ public class InfoController {
      * @param response
      * @return lai
      */
-    @RequestMapping("/delUser")
+    @RequestMapping("/delInfo")
     @ResponseBody
-    public void delUser(@RequestParam("id") int id, HttpServletResponse response
+    public void delInfo(@RequestParam("id") int id, HttpServletResponse response
             , HttpServletRequest request, @RequestParam(value = "currentPage") String currentPage) {
         try {
             response.setCharacterEncoding("UTF-8");
@@ -168,6 +168,40 @@ public class InfoController {
         return result > 0 ? "delSuccess" : "";
     }
 
+    /**
+     * 跳转修改页面
+     *
+     * @param id
+     * @return lai
+     */
+    @RequestMapping("/updateInfo")
+    public String update(@RequestParam("id") int id,HttpServletRequest request) {
 
+        request.setAttribute("infoTypeList",infoService.getInfoTypeList());
+        request.setAttribute("info",infoService.getInfoById(id));
+        return "wenzhang_xiugai";
+    }
 
+    /**
+     * 修改发布信息
+     *
+     * @param request
+     * @param info
+     * @return lai
+     */
+    @RequestMapping("/doUpInfo")
+    @ResponseBody
+    public void updateInfo(HttpServletRequest request, Info info,HttpServletResponse response) throws IOException {
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        int result = infoService.upInfo(info);
+        if (result > 0) {
+            out.print("<script language='javascript'>alert('修改成功');window.location='infoList';</script>");
+        } else {
+            out.print("<script language='javascript'>alert('修改失败');</script>");
+            //window.location='updateInfo'
+        }
+        out.flush();
+        out.close();
+    }
 }

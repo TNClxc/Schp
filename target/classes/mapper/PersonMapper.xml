@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.star.mapper.PersonMapper">
+    <select id="getPersonage" resultType="com.star.pojo.User">
+        SELECT * FROM schp_user WHERE id=#{id}
+    </select>
+
+    <delete id="delPerson" parameterType="com.star.pojo.User">
+        DELETE  FROM `schp_user` WHERE id=#{id}
+    </delete>
+
+    <update id="upPerson" parameterType="com.star.pojo.User">
+        UPDATE `schpdb`.`schp_user` SET `realName` = #{upUser.realName},`sex` = #{upUser.sex},`usePhone` = #{upUser.usePhone},`userRoleId` = #{upUser.userRoleId} WHERE `id` = #{upUser.id}
+    </update>
+</mapper>

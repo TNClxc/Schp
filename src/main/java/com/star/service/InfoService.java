@@ -62,4 +62,18 @@ public interface InfoService {
      */
     public int infoAdd(Info info);
 
+    /**
+     * 修改发布信息
+     * @param info
+     * @return lai
+     */
+    public int upInfo(@Param("info") Info info);
+
+    /**
+     * 按ID查询info信息
+     * @param id
+     * @return
+     */
+    public Info getInfoById(int id);
+
 }

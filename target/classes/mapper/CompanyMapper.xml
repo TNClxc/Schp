@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.star.mapper.CompanyMapper">
+
+
+    <resultMap id="CompanyMap" type="Company" autoMapping="true" >
+        <id property="id" column="id"/>
+        <result property="userCount" column="userCount"/>
+        <!-- 员工列表 -->
+        <collection property="userList" column="id" ofType="User" javaType="java.util.ArrayList" select="getCompanyUserList"/>
+        <!-- 发布信息列表 -->
+        <collection property="infoList" column="id" ofType="Info" javaType="java.util.ArrayList" select="getCompanyInfoList"/>
+    </resultMap>
+    <resultMap id="UserMap" type="com.star.pojo.User" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="Role" javaType="com.star.pojo.Role" autoMapping="true">
+            <id property="id" column="id"/>
+        </association>
+    </resultMap>
+    <resultMap id="InfoMap" type="Info" autoMapping="true">
+        <id  property="id" column="id" />
+    </resultMap>
+
+    <!-- 分页查询全部信息 -->
+    <select id="getCompanyList" resultType="Company">
+        select *
+        from schp_company
+        order by id desc
+        limit #{currentPage},#{pageSize}
+    </select>
+
+    <!-- 分页查询全部信息Map -->
+    <select id="getCompanyMap" resultMap="CompanyMap">
+        select com.*,(select count(*)
+                     from schp_company c,
+                          schp_user u,
+                          schp_role r
+                     where c.id = u.companyId
+                       and u.userRoleId = r.id and c.id =com.id
+        ) as 'userCount'
+        from schp_company com
+        order by userCount desc
+        limit #{currentPage},#{pageSize}
+    </select>
+
+    <!-- userList -->
+    <select id="getCompanyUserList" resultMap="UserMap">
+        select  u.*,r.*
+        from schp_company c,
+             schp_user u,
+             schp_role r
+        where c.id = u.companyId
+          and u.userRoleId = r.id and  u.companyId = #{id}
+    </select>
+
+    <select id="getCompanyInfoList" resultMap="InfoMap">
+        select
+            i.*
+        from schp_user u , schp_info i,schp_company c
+        where c.id = u.companyId and  i.userId = u.id and  c.id = #{id}
+    </select>
+
+
+
+
+
+    <!-- 统计职位总记录数 -->
+    <select id="getTotalCount" resultType="int">
+
+        select count(1)
+        from schp_company
+
+    </select>
+
+    <!-- 删除职位信息 -->
+    <delete id="delCompany" parameterType="com.star.pojo.Company">
+        delete
+        from schp_company
+        where id = #{id}
+    </delete>
+
+    <select id="getCompany" resultType="Company">
+        SELECT * FROM `schp_company` WHERE  id=#{id}
+    </select>
+
+    <select id="getListOfCompany" resultType="Company">
+        SELECT * FROM `schp_company` WHERE  companyName like "%" #{companyName} "%"
+    </select>
+
+    <!--发布公司信息-->
+    <insert id="insetCompany" parameterType="com.star.pojo.Company">
+        INSERT INTO `schpdb`.`schp_company`
+        (`companyName`,`companyContent`,`companyPhone`)
+         VALUES(#{company.companyName},#{company.companyContent},#{company.companyPhone}) ;
+    </insert>
+
+
+    <update id="upOfCompany" parameterType="com.star.pojo.Company">
+        UPDATE
+            `schpdb`.`schp_company`
+        SET `companyName` = #{company.companyName},
+            `companyContent` = #{company.companyContent},
+            `companyPhone` = #{company.companyPhone},
+            `companyAddress` = #{company.companyAddress},
+            `companyCapital` = #{company.companyCapital}
+        WHERE `id` = #{company.id} ;
+    </update>
+
+
+</mapper>

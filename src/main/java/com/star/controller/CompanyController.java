@@ -1,6 +1,7 @@
 package com.star.controller;
 
 import com.star.pojo.Company;
+import com.star.pojo.Info;
 import com.star.pojo.User;
 import com.star.service.CompanyService;
 import com.star.utils.Pageutil;
@@ -53,8 +54,47 @@ public class CompanyController {
         Pageutil pageutil = pageutil = new Pageutil(Integer.parseInt(currentPage), companyService.getTotalCount());
         List<Company> companyMap = companyService.getCompanyMap(pageutil.getStartIndex(), Pageutil.PAGE_SIZE);
         request.setAttribute("companyMap", companyMap);
+        request.getSession().setAttribute("companyMap", companyMap);
         request.setAttribute("pageUtil", pageutil);
         return "huodong_ChaoGuan";
+    }
+
+    /**
+     * 查看目标公司下的所有员工
+     * @param request
+     * @param id
+     * @return lai
+     */
+    @RequestMapping("/chaoguan_person")
+    public String chaoguanPerson(HttpServletRequest request , @RequestParam("id") int id) {
+        List <Company> companyList = (List<Company>) request.getSession().getAttribute("companyMap");
+        for (int i = 0; i <companyList.size() ; i++) {
+            Company c = companyList.get(i);
+            if(c.getId() == id){
+                request.setAttribute("userList",c.getUserList());
+                return "huodong_person";
+            }
+        }
+        return "huodong_person";
+    }
+
+    /**
+     * 查看目标公司下的所有文章
+     * @param request
+     * @param id
+     * @return lai
+     */
+    @RequestMapping("/chaoguan_xinwen")
+    public String chaoguan_xinwen(HttpServletRequest request ,@RequestParam("id") int id) {
+        List <Company> companyList = (List<Company>) request.getSession().getAttribute("companyMap");
+        for (int i = 0; i <companyList.size() ; i++) {
+            Company c = companyList.get(i);
+            if(c.getId() == id){
+                request.setAttribute("infoList",c.getInfoList());
+                return "huodong_xinwen";
+            }
+        }
+        return "huodong_xinwen  ";
     }
 
     /**
